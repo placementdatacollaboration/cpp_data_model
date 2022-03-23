@@ -1,0 +1,915 @@
+Framework:
+	comment: Table structure is not known at this time. ???
+
+LocalAuthority:
+	LocalAuthorityID:
+		comment: Uniquely identifies LA in portal. Unsure of format.
+		type: alphanumeric
+	LocalAuthorityName:
+		comment: Unsure of format. Assuming free text
+		type: alphanumeric
+	ContactInformation:
+		comment: Unsure of format. Assuming free text
+		type: alphanumeric
+
+ChildSupportServiceBid:
+	SupportServiceBidID:
+		comment: Identifies Support Service Bid Record. Unsure of format
+		type: alphanumeric
+	ChildPortalID:
+		comment: Identifies Child Record. Unsure of format. ChildID?
+		type: alphanumeric
+
+SupportServiceBid:
+	SupportServiceBidID:
+		comment: System generated. Uniquely identifies bid
+	ServicePurchaserID:
+		comment: Link to service purchaser. Unsure of format.
+		type: alphanumeric
+	BidDate:
+		comment: Date bid created. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+	Deadline:
+		comment: Deadline for responses to bid. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+	PlacementStartDate:
+		comment: Date support services arrangement intended to start. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+
+SupportServiceBidResponse:
+	comment: Table also listed as "ChildSupportServiceBidResponse"
+	SupportServiceBidResponseID:
+		comment: Unique system generated ID. Unsure of format
+		type: alphanumeric
+	SupportServiceBidID:
+		comment: Links back to residential bid. Unsure of format
+		type: alphanumeric
+	SupportServiceBidResponseDate:
+		comment: Date bid response generated. Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+	TenderedPrice:
+		comment: Unsure of format
+		type: numeric
+	FosterAgencyID:
+		comment: Links to foster agency. Unsure of format
+		type: alphanumeric
+	DateOffered:
+		comment: Proposed start date. Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+	Outcome:
+		comment: Accepted or declined. Assuming these are the only options.
+		category:
+			- code: "1"
+			  name: "Accepted"
+			- code: "0"
+			  name: "Declined"
+	ReasonForDecision:
+		comment: Unsure of format. Assuming free text, but could be categorical
+		type: alphanumeric
+
+ChildSupportServiceBridge:
+	ChildSupportServiceBridgeID:
+		type: alphanumeric
+	SupportServiceBidID:
+		type: alphanumeric
+	ChildID:
+		type: alphanumeric
+
+ChildResidentialBidBridge:
+	ChildPortalID:
+		comment: Identifies Child Record. Unsure of format. Same as childID?
+		type: alphanumeric
+	ResidentialBidID:
+		comment: Identifies Residential Bid Record. Unsure of format
+		type: alphanumeric
+
+ChildFosteringBidBridge:
+	ChildPortalID:
+		comment: Identifies Child Record. ChildID? Unsure of format.
+		type: alphanumeric
+	FosteringBidID:
+		comment: Identifies Fostering Bid Record. Unsure of format.
+		type: alphanumeric
+
+FosteringBid:
+	FosteringBidID:
+		comment: Unsure of format. System generated. Uniquely identifies bid
+		type: alphanumeric
+	ServicePurchaserID:
+		comment: Links to service purchaser. Unsure of format
+		type: alphanumeric
+	BidDate:
+		comment: Date bid created. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+	Deadline:
+		comment: Deadline for responses to bid. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+	PlacementStartDate:
+		comment: Date fostering arrangement intended to start. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+
+FosteringBidResponse:
+	FosteringBidResponseID:
+		comment: Unique system generated ID. Unsure of format
+		type: alphanumeric
+	FosteringBidID:
+		comment: Links back to residential bid. Unsure of format
+		type: alphanumeric
+	FosteringBidResponseDate:
+		comment: Date bid response generated. Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+	TenderedPrice:
+		comment: Unsure of format.
+		type: numeric
+	FosterAgencyID:
+		comment: Links to foster agency. Unsure of format.
+		type: alphanumeric
+	DateOffered:
+		comment: Proposed start date. Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+	Outcome:
+		comment: Accepted or declined. Assuming only options
+        category:
+            - code: "1"
+              name: "Accepted"
+            - code: "0"
+              name: "Declined"
+	ReasonForDecision:
+		comment: Unsure of format. Could be a choice/categorical list. Leaving as free text for now.
+		type: alphanumeric
+
+FosteringAgency:
+	comment: Unsure of table structure. What is below is purely a guess
+	FosteringAgencyID:
+		comment: Unsure of format
+		type: alphanumeric
+	Name:
+		comment: Name of Agency
+		type: alphanumeric
+
+FosteringAgencyNote:
+	FosteringAgencyNoteID:
+		comment: Unique id. Possibly system-generated. Unsure of format
+		type: alphanumeric
+	FosteringAgencyID:
+		comment: Identifies fostering agency that's being referred to. Unsure of format
+		type: alphanumeric
+	Note:
+		comment: Unsure of length restrictions. Free form text field that allows records and comments to be made
+		type: alphanumeric
+	Author:
+		comment: Unsure of length restrictions
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+
+FosteringPlacement:
+	FosteringPlacementID:
+		comment: Unsure of format
+		type: alphanumeric
+	FosteringBidID:
+		comment: Links back to originating bid. Via the bid table possible to access child and service purchaser. Unsure of format.
+		type: alphanumeric
+	FosteringAgencyID:
+		comment: Links to fostering agency. Unsure of format.
+		type: alphanumeric
+	StartDate:
+		date: "%Y-%m-%d"
+	EndDate:
+		date: "%Y-%m-%d"
+	ReasonForTermination:
+		comment: Unsure of format. Could be categorical or from a list. Assuming free text for now.
+		type: alphanumeric
+	SupportHours:
+		comment: Unsure of format. Should it be start and end times separately?
+		type: alphanumeric
+	FeeType:
+	SupportHourFee:
+		comment: Unsure of format
+		type: alphanumeric
+	CareCost:
+		comment: Unsure of format
+		type: alphanumeric
+	AdditionalFees:
+		comment: Unsure of format
+		type: alphanumeric
+	FrameworkID:
+		comment: Links to framework. Unsure of foremat
+		type: alphanumeric
+	PlacementLocalAuthorityID:
+		comment: Unsure of format. Links local authority table. LA where child is placed.
+		type: alphanumeric
+	AddressDetails:
+		comment: Assuming free text address field. How are multiple address lines entered?
+		type: alphanumeric
+	PostCode:
+		comment: Standard UK postcode formats?
+		type: alphanumeric
+
+
+Child:
+	ChildID:
+		comment: Possibly inconsistent across tables. Also listed as ChildPortalID? Need to stick with one name for it. Uniquely identifies child within portal
+		type: alphanumeric
+	FamilyName:
+		comment: Unsure of length limits
+		type: alphanumeric
+	FirstName:
+		comment: Unsure of length limits
+		type: alphanumeric
+	Ethnicity:
+		comment: What are the available options and how are they coded?
+		category:
+			- code: ETH1
+			  name: Some Ethnicity Option
+			- code: ETH1
+			  name: Some Ethnicity Option
+	Gender:
+		comment: Unsure how this is handled if no gender preference is specified, or if LGBTQ+ genders are considered
+		category:
+			- code: "1"
+			  name: Male
+			- code: "2"
+			  name: Female
+			- code: "0"
+			  name: Not recorded
+			- code: "9"
+			  name: Other
+	Status:
+		comment: Any flags required? For example unaccompanied asylum seeker, SEND, phyiscal or mental disability
+		type: ???
+	Location:
+		comment: Address including post code
+		type: alphanumeric
+		maxlength: 20
+	DateOfBirth:
+		comment: Unsure of format. Using best guess.
+		date: "%Y-%m-%d"	
+	HomeLocalAuthorityID:
+		comment: Identifies LA responsible for child
+		type: alphanumeric	
+	Need:
+		comment: Not sure what this field means as children can have many needs. Is inconsistently listed or absent in documents
+		category:
+			- code: 1
+			  name: TestNeed1
+			- code: 2
+			  name: TestNeed2
+
+ChildNote:
+	ChildNoteID:
+		comment: Unsure of format. Unique ID for this table. Possibly system generated
+		type: alphanumeric
+	ChildID:
+		comment: Identifies child referred to. Could also be ChildPortalID
+		type: alphanumeric
+	Note:
+		comment: Free text field (how big should it be?)
+		type: alphanumeric
+		maxlength: 512
+	Author:
+		comment: Is this free text? Unsure of limits or formatting
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Using best guess
+		date: "%Y-%m-%d"
+
+ResidentialPlacementNote:
+	ResidentialNoteID:
+		comment: System generated unique ID. Unsure of format.
+		type: alphanumeric
+	ResidentialPlacementID:
+		comment: Links to residential Placement. Unsure of format
+		type: alphanumeric
+	Note:
+		comment: Free text field (how big should it be?)
+		type: alphanumeric
+		maxlength: 512
+	Author:
+		comment: Is this free text? Unsure of limits or formatting
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Using best guess
+		date: "%Y-%m-%d"
+
+FosteringPlacementNote:
+	FosteringPlacementNoteID:
+		comment: System generated unique ID. Unsure of format.
+		type: alphanumeric
+	FosteringPlacementID:
+		comment: Links to Fostering Placement. Unsure of format
+		type: alphanumeric
+	Note:
+		comment: Free text field (how big should it be?)
+		type: alphanumeric
+	Author:
+		comment: Is this free text? Unsure of limits or formatting
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Using best guess
+		date: "%Y-%m-%d"
+
+SupportService:
+	comment: Table not defined. Unsure of format. What is belouw is a guess
+	SupportServiceID:
+		comment: Unsure of format
+		type: alphanumeric
+	Name:
+		comment: Unsure of length restrictions
+		type: alphanumeric
+
+SupportServiceNote:
+	SupportServiceNoteID:
+		comment: Unsure of format. Unique id for this table. System generated?
+		type: alphanumeric
+	SupportServiceID:
+		comment: Unsure of format. Identifies free form text field that allows records and comments to be made.
+		type: alphanumeric
+	Note:
+		comment: Free text field (how big should it be?). Free form text field which allows records and comments to be made.
+		type: alphanumeric
+	Author:
+		comment: Is this free text? Unsure of limits or formatting
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Using best guess
+		date: "%Y-%m-%d"
+
+
+SupportServicePlacementNote:
+	SupportServicePlacementNoteID:
+		comment: System generated unique ID. Unsure of format.
+		type: alphanumeric
+	SupportServicePlacementID:
+		comment: Links to Fostering Placement. Unsure of format
+		type: alphanumeric
+	Note:
+		comment: Free text field (how big should it be?)
+		type: alphanumeric
+		maxlength: 512
+	Author:
+		comment: Is this free text? Unsure of limits or formatting
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Using best guess
+		date: "%Y-%m-%d"
+
+
+ChildAssociateReferences:
+	ChildAssociateID:
+		comment: system generated unique ID. Unsure of format
+		type: alphanumeric
+	ChildID:
+		comment: Unsure of format. Links to child record. Is this the same as ChildPortalID?  Potentially different.
+		type: alphanumeric
+	AssociateName:
+		comment: Unsure of format. Assuming free text
+		type: alphanumeric
+	RelationshipWithChild:
+		comment: Unsure of format. Assuming a as of yet undefined choice
+		category:
+			- code: 1
+			  name: SomeRelationshipType
+	ExternalReference:
+		comment: ID in external system (optional). Unsure of format, but optional nature means it can be blank?
+		canbeblank: yes
+		type: alphanumeric
+	ExternalSystemName:
+		comment: Name of external system. Assuming can be blank also due to external reference being optional
+		canbeblank: yes
+		type: alphanumeric
+
+ChildSiblingGroup:
+	SiblingGroupID:
+		comment: A system generated ID. Unsure of format.
+		type: alphanumeric
+	ChildID:
+		comment: Links to Child record. Is this the same as ChildPortalID? Potentially Different
+		type: alphanumeric
+
+ChildExternalReference:
+	ChildReferenceID:
+		comment: Unique ID for the table. May be system-generated. Unsure of format.
+		type: alphanumeric
+	ChildID:
+		comment: Also listed as ChildPortalID. Unsure of format. Uniquely identifies child in the portal
+		type: alphanumeric
+	ExternalReference:
+		comment: ID from external system. Unsure of format, but assuming that many systems may mean many formats
+		type: alphanumeric
+	ExternalSystemName:
+		comment: Name of external system. Assuming free text field
+		type: alphanumeric
+
+ResidentialPlacement:
+	ResidentialPlacementID:
+		comment: System generaged Unique ID. Unsure of format
+		type: alphanumeric
+	ResidentialHomeID:
+		comment: Links back to Home. Unsure of format
+		type: alphanumeric
+	StartDate:
+		comment: Unsure of format. Format used here is rough guess
+		date: "%Y-%m-%d"
+	EndDate:
+		comment: Unsure of format. Format used here is rough guess
+		date: "%Y-%m-%d"
+	ResidentialBidID:
+		comment: Links back to originating bid. Via the bid table possible to access child and service purchaser.
+		type: alphanumeric	
+	HostLocalAuthorityID:
+		comment: Unsure of format.
+		type: alphanumeric	
+	SupportServiceBidID:
+		comment: Unsure of format.
+		type: alphanumeric	
+	ReasonForTermination:
+		comment: The category is a rough guess at the moment of what it could look like based on other data models seen
+        category:
+            - code: RC1
+              name: Adopted
+			- code: RC2
+			  name: OtherReason
+	SupportHours:
+		comment: Unsure of format.
+		type: alphanumeric
+	FeeType:
+		comment: Unsure of format.
+		category:
+			- code: ???
+			  name: SomeFeeTypeCategory
+	SupportHourFee:
+		comment: Unsure of format.
+		type: numeric
+	CareCost:
+		comment: Unsure of format.
+		type: numeric
+	AdditionalFees:
+		comment: Can this be multiple? How is it stored?
+		type: numeric
+	FrameworkId:
+		comment: Links to Framework
+		type: alphanumeric
+	OfstedStatus:
+		comment: Ofsted status of placement Provider at start of Placement
+		type: alphanumeric
+	PlacementLocalAuthorityID:
+		comment: Links to Local Authority table. LA where the child is placed
+		type: alphanumeric
+
+SupportServicesPlacement:
+	SupportServicePlacementID:
+		comment: System Generated Unique ID. Unsure of format
+		type: alphanumeric
+	SupportServiceBidID:
+		comment: Links back to originating bid via the bid table. Possible to access child and service purchaser. Unsure of format.
+		type: alphanumeric
+	SupportServiceID:
+		comment: Links to fostering agency
+		type: alphanumeric
+	StartDate:
+		comment: Unsore of format. Assuming for now.
+		date: "%Y-%m-%d"
+	EndDate:
+		comment: Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+	ReasonForTermination:
+		comment: Unsure of format. Could be a choice or cagegorical list. Assuming free text for now.
+		type: alphanumeric
+	SupportHours:
+		comment: Unsure of format. Could be split into two times (start/end).
+		type: alphanumeric
+	FeeType:
+		comment: Unsure of format
+		type: alphanumeric
+	SupportHourFee:
+		comment: Unsure of format
+		type: alphanumeric
+	CareCost:
+		comment: Unsure of format
+		type: alphanumeric
+	AdditionalFees:
+		comment: Unsure of format
+		type: alphanumeric
+	FrameworkID:
+		comment: Links to framework. Unsure of format.
+		type: alphanumeric
+	PlacementLocalAuthorityID:
+		comment: Links to local authority table. LA where the child is placed. Unsure of format
+		type: alphanumeric
+
+ResidentialPlacementBidResponse:
+	comment: Also listed as "ResidentialBidResponse"
+	ResidentialBidResponseID:
+		comment: Unique system generated ID. Unsure of format.
+		type: alphanumeric	
+	ResidentialBidID:
+		comment: Links back to residential bid. Unsure of format.
+		type: alphanumeric	
+	ResidentialHomeID:
+		comment: Also listed as "HomeID". Unsure of format
+		type: alphanumeric
+	ResidentialBidResponseDate:
+		comment: Date Bid response generated. Unsure of format, assuming for now.
+		date: "%Y-%m-%d"
+	TenderedPrice:
+		comment: Unsure of format.
+		type: numeric
+	DateOffered:
+		comment: Proposed start date. Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+	Outcome:
+		comment: Accepted or declined. Unsure of format, so specifying as a category choice
+        category:
+            - code: "1"
+              name: "Accepted"
+            - code: "0"
+              name: "Declined"
+	ReasonForDecision:
+		comment: Unsure of format. Assuming a categorical choice
+		category:
+			- code: "1"
+			  name: "Some Reason"
+
+
+ResidentialBid:
+	ResidentialBidID:
+		comment: System generated. Uniquely identifies Bid. Unsure of format
+		type: alphanumeric
+	ServicePurchaserID:
+		comment: Links to service purchaser. Unsure of format
+		type: alphanumeric
+	BidDate:
+		comment: Date Bid created. Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+	Deadline:
+		comment: Deadline for responses to bid. Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+	PlacementStartDate:
+		comment: Date placement intended to start. Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+
+ResidentialPlacementBid:
+	ResidentialPlacementBidID:
+		type: alphanumeric	
+	ChildID:
+		type: alphanumeric	
+	ProviderCategory:
+		category:
+			- code: SomeCode
+			name: Some Category
+
+	
+ServicePurchaser:
+	ServicePurchaserID:
+		comment: Unsure of format. Assuming system-generated.
+		type: alphanumeric		
+	Name:
+		comment: Also listed as "ServicePurchaserName". Assuming free text.
+		type: alphanumeric
+	ContactDetails:
+		comment: Assuming free text. Unsure of format.
+		type: alphanumeric
+	
+Provider:
+	comment: Also listed in documentation as "ResidentialProvider"
+	ProviderID:
+		comment: System generated unique id. Unsure of format.
+		type: alphanumeric
+	Name:
+		comment: Name of the provider. Is there a lenght limit?
+		type: alphanumeric
+	ContactDetails:
+		comment: Unsure of format
+		type: alphanumeric
+	CompanyRegistrationNumber:
+		comment: Unsure of format
+		type: alphanumeric
+	ProviderExitDate:
+		comment: Unsure of format. Assuming for now
+		date: "%Y-%m-%d"
+	ProviderStartDate:
+		comment: Unsure of format. Assuming for now
+		date: "%Y-%m-%d"	
+	ProviderCategory:
+		comment: Unsure of format. Assuming categories are from a list that has yet to be defined.
+		category:
+			- code: SomeCode
+			name: Some Category	
+
+ProviderNote:
+	ProviderNoteID:
+		comment: Unique ID for the table. System generated? Unsure of format
+		type: alphanumeric
+	ProviderID:
+		comment: Identifies the provider. Unsure of format
+		type: alphanumeric
+	Note:
+		comment: Free form text field that allows records and comments to be made. Unsure of allowed length.
+		type: alphanumeric
+	Author:
+		comment: Unsure of format. Free form text? Unsure of allowed length
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+
+Home:
+	comment: Also listed as ResidentialHome
+	HomeID:
+		comment: System generated ID that uniquely identifies a home. Unsure of format
+		type: alphanumeric
+	ProviderID:
+		comment: Link to provider that owns the home. Unsure of format.
+		type: alphanumeric
+	Name:
+		comment: Unsure of format/length. Free text name for contact for home?
+		type: alphanumeric
+		maxlength: 20
+	ContactDetails:
+		comment: Unsure of format. Assuming phone number or maybe e-mail contact info? Free text?
+		type: alphanumeric
+	NumberOfBeds:
+		comment: Unsure of format. Assuming numeric, but it might be best to control to a list to avoid nonsensible numbers
+		type: numeric
+	PostCode:
+		comment: Unsure of format. UK standard?
+		type: alphanumeric
+	HomeCategory:
+		comment: Ofsted field 2-tier list, defined by Ofsted. Home potentially only has one categorisation at a time
+		category:
+            - code: ???
+              name: Some Category
+            - code: ???
+              name: Some Other Category
+	OfstedReference:
+		comment: This may be the provider's Ofsted Unique Reference Number
+		type: alphanumeric
+	OfstedRating:
+		comment: Is this duplicative? Meaning, could this be pulled from Ofsted itself instead of stored? Current Rating
+		type: alphanumeric
+	OfstedInspectionDate:
+		comment: Is this duplicative? Meaning, could this be pulled from Ofsted itself instead of stored? Date of most recent Ofsted inspection
+		date: "%Y-%m-%d"
+	OfstedDateRegistered:
+		comment: Is this duplicative? Meaning, could this be pulled from Ofsted itself instead of stored?
+		date: "%Y-%m-%d"
+	Location:
+		comment: May be an address, may be replaced with UPRN at some point. Ofsted are data source for this.
+		maxlength: 20
+		type: alphanumeric
+	OutOfHoursReferals:
+        category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	AgeRangeMaximum:
+		comment: Originally listed as AgeRange, but better separated. I suspect there may be cases where this is not defined
+		canbeblank: yes
+		type: numeric
+	AgeRangeMinimum:
+		comment: Originally listed as AgeRange, but better separated. I suspect there may be cases where this is not defined
+		canbeblank: yes
+		type: numeric
+	Gender:
+		comment: Unsure how this is handled if no gender preference is specified, or if LGBTQ+ genders are considered
+		category:
+			- code: "1"
+			  name: Male
+			- code: "2"
+			  name: Female
+			- code: "0"
+			  name: Not recorded
+			- code: "9"
+			  name: Any
+	Availability:
+		comment: Is the home currently unavailable due to being part of a block contract. Assuming Yes/No, but unsure of format.
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"	
+	EmergencyPlacementAvailable:
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	ShortTerm:
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	LongTerm:
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	Sibling:
+		comment: This field may be present as an error. What does it refer to?. Defined as Yes/No field
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	RespiteAndCrisisIntervention:
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	RemandPACE:
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilityAbuseNeglect:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilityChildSexualExploitation:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilityMentalHealth:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilityEatingDisorders:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilitySelfHarm:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	StaffCapabilitySubstanceAbuse:
+		comment: As formatted, this could be problematic as there may be more capabilities needed long-term. Would ideally be in linked table
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	Category1:
+		comment: Emotional or Behavioural difficulties. This may be problematic as there could be more categories added later (or renamed). Might be better in linked table.
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	Category2:
+		comment: Learning disability or ASC. This may be problematic as there could be more categories added later (or renamed). Might be better in linked table.
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	Category3:
+		comment: Complex Health or Physical Needs. This may be problematic as there could be more categories added later (or renamed). Might be better in linked table.
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	Category4:
+		comment: Specialist Mental Health. This may be problematic as there could be more categories added later (or renamed). Might be better in linked table.
+		category:
+            - code: "1"
+              name: "Yes"
+            - code: "0"
+              name: "No"		
+	DaytimeStaffChildRatioInside:
+		comment: Inside the home. Unsure of format
+		type: alphanumeric
+	DaytimeStaffChildRatioOutside:
+		comment: Outside the home
+		type: numeric
+	NightimeStafChildRatio:
+		type: numeric
+	
+HomeNote:
+	HomeNoteID:
+		comment: Unique ID for this table. System generated? Unsure of format.
+		type: alphanumeric
+	HomeID:
+		comment: Identifies the provider being referred to
+		type: alphanumeric
+	Note:
+		comment: free form text field that allows records and comments to be made. Unsure of length limits if any
+		type: alphanumeric
+	Author:
+		comment: Unsure of format/length limits
+		type: alphanumeric
+	Date:
+		comment: Unsure of format. Assuming for now.
+		date: "%Y-%m-%d"
+
+ResidentialPlacementRevision:
+	ResidentialPlacementRevisionID:
+		comment: Unsure of format. System generated. Unique ID.
+		type: alphanumeric
+	ResidentialPlacementID:
+		comment: Unsure of format. Links to residential placement table
+		type: alphanumeric
+	StartDate:
+		comment: Unsure of format. Date these changes take effect
+		date: "%Y-%m-%d"
+	EndDate:
+		comment: Unsure of format. Date these changes no longer are in effect. NULL value here if changes are currently in effect
+		canbeblank: yes
+		date: "%Y-%m-%d"
+	SupportHours:
+		comment: Unsure of format.
+		type: alphanumeric
+	FeeType:
+		comment: Unsure of format.
+		type: alphanumeric
+	SupportHourFee:
+		comment: Unsure of format.
+		type: alphanumeric
+	CareCost:
+		comment: Unsure of format.
+		type: alphanumeric
+	AdditionalFees:
+		comment: Unsure of format.
+		type: alphanumeric
+
+FosteringPlacementRevision:
+	FosteringPlacementRevisionID:
+		comment: Unsure of format. System generated. Unique ID.
+		type: alphanumeric
+	FosteringPlacementID:
+		comment: Unsure of format. Links to residential placement table
+		type: alphanumeric
+	StartDate:
+		comment: Unsure of format. Date these changes take effect
+		date: "%Y-%m-%d"
+	EndDate:
+		comment: Unsure of format. Date these changes no longer are in effect. NULL value here if changes are currently in effect
+		canbeblank: yes
+		date: "%Y-%m-%d"
+	SupportHours:
+		comment: Unsure of format.
+		type: alphanumeric
+	FeeType:
+		comment: Unsure of format.
+		type: alphanumeric
+	SupportHourFee:
+		comment: Unsure of format.
+		type: alphanumeric
+	CareCost:
+		comment: Unsure of format.
+		type: alphanumeric
+	AdditionalFees:
+		comment: Unsure of format.
+		type: alphanumeric
+
+SupportServiceRevision:
+	SupportServicePlacementRevisionID:
+		comment: Unsure of format. System generated. Unique ID.
+		type: alphanumeric
+	SupportServicePlacementID:
+		comment: Unsure of format. Links to residential placement table
+		type: alphanumeric
+	StartDate:
+		comment: Unsure of format. Date these changes take effect
+		date: "%Y-%m-%d"
+	EndDate:
+		comment: Unsure of format. Date these changes no longer are in effect. NULL value here if changes are currently in effect
+		canbeblank: yes
+		date: "%Y-%m-%d"
+	SupportHours:
+		comment: Unsure of format.
+		type: alphanumeric
+	FeeType:
+		comment: Unsure of format.
+		type: alphanumeric
+	SupportHourFee:
+		comment: Unsure of format.
+		type: alphanumeric
+	CareCost:
+		comment: Unsure of format.
+		type: alphanumeric
+	AdditionalFees:
+		comment: Unsure of format.
+		type: alphanumeric
