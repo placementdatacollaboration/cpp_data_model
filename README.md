@@ -10,70 +10,86 @@ Because of the complexity of this model, I've tried to group things into section
 ## Child
 ```mermaid
 erDiagram
-    Child ||--o{ ChildNote : has
-    Child }|--o{ ChildSiblingGroup : has
-    Child ||..|{ ChildExternalReference : has
-    Child ||..o{ ChildNeed: has
-    ChildNeed }|..|| Need: is
-    ChildSupportServiceBridge ||..|| Child: has
+    Child ||--o{ ChildNote : "has a"
+    Child }|--o{ ChildSiblingGroup : "is part of a"
+    Child ||..|{ ChildExternalReference : "has a"
+    Child ||..o{ ChildNeed: "has a"
+    ChildNeed }|..|| Need: "is defined by"
+    Child ||..|| ChildSupportServiceBridge: "is connected by"
 ```
+
+## ResidentialBid
+```mermaid
+erDiagram
+    ChildResidentialBidBridge ||..|| ResidentialBid : "is connected by"
+    ChildResidentialBidBridge ||..|| Child : "is connected to"
+    ResidentialPlacementBidResponse ||..|| ResidentialBidResponse : "has a"
+    ResidentialPlacementBidResponse ||..|| ResidentialBid : "is part of"
+    ResidentialPlacementBidResponse }|..|| ResidentialHome : "is enabled by"
+    ResidentialPlacementBid }|..|| Child : "Is part of"
+```    
 
 ## ResidentialPlacement
 ```mermaid
 erDiagram
-    SupportServiceBid ||..|{ ChildSupportServiceBridge : has
-    ChildResidentialBidBridge ||..|| ResidentialBid : has
-    ChildResidentialBidBridge ||..|| Child : has
-    ResidentialPlacement ||..o{ ResidentialPlacementRevision : has 
-    ResidentialPlacement ||..o{ ResidentialPlacementNote : has
-    ResidentialPlacement ||..|| SupportServiceBid : has
-    ResidentialPlacement ||..|| ResidentialBid : has
-    ResidentialPlacement }|..|| ResidentialHome : has
-    ResidentialPlacement }|..|| Framework : has
-    ResidentialPlacement ||..|| LocalAuthority : placement
-    ResidentialPlacement ||..|| LocalAuthority : host 
-    ResidentialPlacementBidResponse ||..|| ResidentialBidResponse : has
-    ResidentialPlacementBidResponse ||..|| ResidentialBid : has
-    ResidentialPlacementBidResponse ||..|| ResidentialHome : has
-    ResidentialPlacementBid ||..|| Child : has
+    ResidentialPlacement ||..o{ ResidentialPlacementRevision : "is changed by" 
+    ResidentialPlacement ||..o{ ResidentialPlacementNote : "has a"
+    ResidentialPlacement ||..|| SupportServiceBid : "came from"
+    ResidentialPlacement ||..|| ResidentialBid : "came from"
+    ResidentialPlacement }|..|| ResidentialHome : "is in"
+    ResidentialPlacement }|..|| Framework : "utilises"
+    ResidentialPlacement ||..|| LocalAuthority : "placement"
+    ResidentialPlacement ||..|| LocalAuthority : "host"
 ```
 
 ## Support Service
 ```mermaid
 erDiagram
-    SupportServiceBid ||..|| ChildSupportServiceBridge: has
-    SupportServiceBid ||..|| ServicePurchaser: has
-    ChildSupportServiceBid ||..|| SupportServiceBid: has
-    ChildSupportServiceBid ||..|| Child: has
-    SupportServiceBidResponse }|..|| SupportServiceBid : has
-    SupportServiceBidResponse }|..|| FosterAgency : has
-    SupportService ||..o{ SupportServiceNote : has
-    SupportService ||..|{ SupportServicePlacement : has
-    SupportServicePlacement ||..|| SupportServiceBid : has
-    SupportServicePlacement ||..|| Framework : has
-    SupportServicePlacement ||..|| LocalAuthority : placement
-    SupportServicePlacement ||..o{ SupportServicePlacementRevision : has    
+    SupportService ||..o{ SupportServiceNote : "has additional"
+    SupportService ||..|{ SupportServicePlacement : "utilises"
+    SupportServicePlacement ||..|| SupportServiceBid : "was implemented from"
+    SupportServicePlacement ||..|| Framework : "utilises"
+    SupportServicePlacement ||..|| LocalAuthority : "placement"
+    SupportServicePlacement ||..o{ SupportServicePlacementRevision : "is refined by"    
+```    
+
+## Support Service Bid
+
+```mermaid
+erDiagram
+    SupportServiceBid ||..|| ChildSupportServiceBridge: "connected by"
+    SupportServiceBid ||..|| ServicePurchaser: "is handled by"
+    SupportServiceBid ||..|{ ChildSupportServiceBridge : "connected by"
+    ChildSupportServiceBid ||..|| SupportServiceBid: "is part of"
+    Child ||..|| ChildSupportServiceBid: "is part of"
+    SupportServiceBid }|..|| SupportServiceBidResponse : "has"
+    FosterAgency ||..|{ SupportServiceBidResponse : "responded with"
 ```    
     
 ## Fostering Placement
 ```mermaid
 erDiagram  
-    FosteringPlacement ||..|{ FosteringBid : has
-    FosteringPlacement }|..|| FosteringAgency : has
-    FosteringPlacement }|..|| FrameworkId : has
-    FosteringPlacement }|..|| PlacementLocalAuthority : has
-    FosteringPlacement ||..o{ FosteringPlacementRevision : has
-    FosteringPlacement ||..o{ FosteringPlacementNote : has
-    FosteringBid }|..|| ServicePurchaser : has
-    ChildFosteringBidBridge ||..|| Child : has
-    ChildFosteringBidBridge ||..|| FosteringBid : has 
-    FosteringAgency ||..o{ FosteringAgencyNote : has
+    FosteringPlacement ||..|| FosteringBid : "came from"
+    FosteringPlacement }|..|| FosteringAgency : "is handled by"
+    FosteringPlacement }|..|| FrameworkId : "utilises"
+    FosteringPlacement }|..|| PlacementLocalAuthority : "is part of"
+    FosteringPlacement ||..o{ FosteringPlacementRevision : "is refined by"
+    FosteringPlacement ||..o{ FosteringPlacementNote : "has"
+    FosteringAgency ||..o{ FosteringAgencyNote : "has"
+```
+
+## Fostering Placement Bid
+```mermaid
+erDiagram
+    ServicePurchaser ||..|{ FosteringBid : "issued by"
+    ChildFosteringBidBridge ||..|| Child : "is connected by"
+    ChildFosteringBidBridge ||..|| FosteringBid : "is connected by"
 ```
 
 ## Provider
 ```mermaid
 erDiagram
-    Home }|..|| Provider : has
+    Provider ||..|{ Home  : maintains
     Home ||..|{ HomeNote : has
     Provider ||..|{ ProviderNote : has
 ```
