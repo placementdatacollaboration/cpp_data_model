@@ -1,6 +1,7 @@
 Framework:
 	comment: Table structure is not known at this time. ???
 
+
 LocalAuthority:
 	LocalAuthorityID:
 		comment: Uniquely identifies LA in portal. Unsure of format.
@@ -12,6 +13,7 @@ LocalAuthority:
 		comment: Unsure of format. Assuming free text
 		type: alphanumeric
 
+
 ChildSupportServiceBid:
 	SupportServiceBidID:
 		comment: Identifies Support Service Bid Record. Unsure of format
@@ -19,6 +21,7 @@ ChildSupportServiceBid:
 	ChildPortalID:
 		comment: Identifies Child Record. Unsure of format. ChildID?
 		type: alphanumeric
+
 
 SupportServiceBid:
 	SupportServiceBidID:
@@ -35,6 +38,7 @@ SupportServiceBid:
 	PlacementStartDate:
 		comment: Date support services arrangement intended to start. Unsure of format, assuming for now.
 		date: "%Y-%m-%d"
+
 
 SupportServiceBidResponse:
 	comment: Table also listed as "ChildSupportServiceBidResponse"
@@ -67,6 +71,7 @@ SupportServiceBidResponse:
 		comment: Unsure of format. Assuming free text, but could be categorical
 		type: alphanumeric
 
+
 ChildSupportServiceBridge:
 	ChildSupportServiceBridgeID:
 		type: alphanumeric
@@ -74,6 +79,7 @@ ChildSupportServiceBridge:
 		type: alphanumeric
 	ChildID:
 		type: alphanumeric
+
 
 ChildResidentialBidBridge:
 	ChildPortalID:
@@ -83,6 +89,7 @@ ChildResidentialBidBridge:
 		comment: Identifies Residential Bid Record. Unsure of format
 		type: alphanumeric
 
+
 ChildFosteringBidBridge:
 	ChildPortalID:
 		comment: Identifies Child Record. ChildID? Unsure of format.
@@ -90,6 +97,7 @@ ChildFosteringBidBridge:
 	FosteringBidID:
 		comment: Identifies Fostering Bid Record. Unsure of format.
 		type: alphanumeric
+
 
 FosteringBid:
 	FosteringBidID:
@@ -107,6 +115,7 @@ FosteringBid:
 	PlacementStartDate:
 		comment: Date fostering arrangement intended to start. Unsure of format, assuming for now.
 		date: "%Y-%m-%d"
+
 
 FosteringBidResponse:
 	FosteringBidResponseID:
@@ -138,6 +147,7 @@ FosteringBidResponse:
 		comment: Unsure of format. Could be a choice/categorical list. Leaving as free text for now.
 		type: alphanumeric
 
+
 FosteringAgency:
 	comment: Unsure of table structure. What is below is purely a guess
 	FosteringAgencyID:
@@ -146,6 +156,7 @@ FosteringAgency:
 	Name:
 		comment: Name of Agency
 		type: alphanumeric
+
 
 FosteringAgencyNote:
 	FosteringAgencyNoteID:
@@ -163,6 +174,7 @@ FosteringAgencyNote:
 	Date:
 		comment: Unsure of format. Assuming for now
 		date: "%Y-%m-%d"
+
 
 FosteringPlacement:
 	FosteringPlacementID:
@@ -257,6 +269,28 @@ Child:
 			- code: 2
 			  name: TestNeed2
 
+
+ChildNeed:
+	ChildID:
+		comment: The Identifier for the Child
+		type: alphanumeric
+	NeedID:
+		comment: The Identifier for the Need
+		type: Numeric
+
+
+Need:
+	NeedID:
+		comment: PK for the need
+		type: Numeric
+	ShortDescription:
+		comment: Description that would appear in a drop-down selector for instance
+		type: alphanumeric
+	Description:
+		comment: More info if needed about the need
+		type: alphanumeric
+
+
 ChildNote:
 	ChildNoteID:
 		comment: Unsure of format. Unique ID for this table. Possibly system generated
@@ -274,6 +308,7 @@ ChildNote:
 	Date:
 		comment: Unsure of format. Using best guess
 		date: "%Y-%m-%d"
+
 
 ResidentialPlacementNote:
 	ResidentialNoteID:
@@ -293,6 +328,7 @@ ResidentialPlacementNote:
 		comment: Unsure of format. Using best guess
 		date: "%Y-%m-%d"
 
+
 FosteringPlacementNote:
 	FosteringPlacementNoteID:
 		comment: System generated unique ID. Unsure of format.
@@ -310,6 +346,7 @@ FosteringPlacementNote:
 		comment: Unsure of format. Using best guess
 		date: "%Y-%m-%d"
 
+
 SupportService:
 	comment: Table not defined. Unsure of format. What is belouw is a guess
 	SupportServiceID:
@@ -318,6 +355,7 @@ SupportService:
 	Name:
 		comment: Unsure of length restrictions
 		type: alphanumeric
+
 
 SupportServiceNote:
 	SupportServiceNoteID:
@@ -380,6 +418,7 @@ ChildAssociateReferences:
 		canbeblank: yes
 		type: alphanumeric
 
+
 ChildSiblingGroup:
 	SiblingGroupID:
 		comment: A system generated ID. Unsure of format.
@@ -387,6 +426,7 @@ ChildSiblingGroup:
 	ChildID:
 		comment: Links to Child record. Is this the same as ChildPortalID? Potentially Different
 		type: alphanumeric
+
 
 ChildExternalReference:
 	ChildReferenceID:
@@ -401,6 +441,7 @@ ChildExternalReference:
 	ExternalSystemName:
 		comment: Name of external system. Assuming free text field
 		type: alphanumeric
+
 
 ResidentialPlacement:
 	ResidentialPlacementID:
@@ -458,6 +499,7 @@ ResidentialPlacement:
 		comment: Links to Local Authority table. LA where the child is placed
 		type: alphanumeric
 
+
 SupportServicesPlacement:
 	SupportServicePlacementID:
 		comment: System Generated Unique ID. Unsure of format
@@ -498,6 +540,7 @@ SupportServicesPlacement:
 	PlacementLocalAuthorityID:
 		comment: Links to local authority table. LA where the child is placed. Unsure of format
 		type: alphanumeric
+
 
 ResidentialPlacementBidResponse:
 	comment: Also listed as "ResidentialBidResponse"
@@ -550,6 +593,7 @@ ResidentialBid:
 		comment: Date placement intended to start. Unsure of format. Assuming for now
 		date: "%Y-%m-%d"
 
+
 ResidentialPlacementBid:
 	ResidentialPlacementBidID:
 		type: alphanumeric	
@@ -571,7 +615,8 @@ ServicePurchaser:
 	ContactDetails:
 		comment: Assuming free text. Unsure of format.
 		type: alphanumeric
-	
+
+
 Provider:
 	comment: Also listed in documentation as "ResidentialProvider"
 	ProviderID:
@@ -598,6 +643,7 @@ Provider:
 			- code: SomeCode
 			name: Some Category	
 
+
 ProviderNote:
 	ProviderNoteID:
 		comment: Unique ID for the table. System generated? Unsure of format
@@ -614,6 +660,7 @@ ProviderNote:
 	Date:
 		comment: Unsure of format. Assuming for now.
 		date: "%Y-%m-%d"
+
 
 Home:
 	comment: Also listed as ResidentialHome
@@ -806,7 +853,8 @@ Home:
 		type: numeric
 	NightimeStafChildRatio:
 		type: numeric
-	
+
+
 HomeNote:
 	HomeNoteID:
 		comment: Unique ID for this table. System generated? Unsure of format.
@@ -823,6 +871,7 @@ HomeNote:
 	Date:
 		comment: Unsure of format. Assuming for now.
 		date: "%Y-%m-%d"
+
 
 ResidentialPlacementRevision:
 	ResidentialPlacementRevisionID:
@@ -854,6 +903,7 @@ ResidentialPlacementRevision:
 		comment: Unsure of format.
 		type: alphanumeric
 
+
 FosteringPlacementRevision:
 	FosteringPlacementRevisionID:
 		comment: Unsure of format. System generated. Unique ID.
@@ -883,6 +933,7 @@ FosteringPlacementRevision:
 	AdditionalFees:
 		comment: Unsure of format.
 		type: alphanumeric
+
 
 SupportServiceRevision:
 	SupportServicePlacementRevisionID:
