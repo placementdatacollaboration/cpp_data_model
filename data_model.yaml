@@ -262,7 +262,7 @@ Child:
 		comment: Identifies LA responsible for child
 		type: alphanumeric	
 	Need:
-		comment: Not sure what this field means as children can have many needs. Is inconsistently listed or absent in documents
+		comment: Not sure what this field means as children can have many needs. Is inconsistently listed or absent in documents. Left for now, but also created separate Needs table structure
 		category:
 			- code: 1
 			  name: TestNeed1
