@@ -21,12 +21,13 @@ erDiagram
 ## ResidentialBid
 ```mermaid
 erDiagram
+    ResidentialPlacementBid }|--|| Child : "Is part of"
     ChildResidentialBidBridge ||--|| ResidentialBid : "is connected by"
     ChildResidentialBidBridge ||--|| Child : "is connected to"
     ResidentialPlacementBidResponse ||--|| ResidentialBidResponse : "has a"
     ResidentialPlacementBidResponse ||--|| ResidentialBid : "is part of"
     ResidentialPlacementBidResponse }|--|| ResidentialHome : "is enabled by"
-    ResidentialPlacementBid }|--|| Child : "Is part of"
+    
 ```    
 
 ## ResidentialPlacement
@@ -89,6 +90,7 @@ erDiagram
 ## Provider
 ```mermaid
 erDiagram
+    Home ||--|{ ResidentialPlacementBidResponse : offered
     Provider ||--|{ Home  : maintains
     Home ||--|{ HomeNote : has
     Provider ||--|{ ProviderNote : has
